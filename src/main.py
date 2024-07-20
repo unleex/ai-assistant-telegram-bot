@@ -1,15 +1,14 @@
 import asyncio
 from config.config import dp, bot
-from handlers import other_handlers, ai_handlers
+from handlers import gpt_handlers, other_handlers
 from keyboards.set_menu import set_main_menu
 
 
 async def main() -> None:
     await bot.delete_webhook(drop_pending_updates = True) 
-    await set_main_menu(bot)
+    await set_main_menu()   
     dp.include_router(other_handlers.rt)
-    dp.include_router(ai_handlers.rt)
-
+    dp.include_router(gpt_handlers.rt)
     print("starting")
     await dp.start_polling(bot)
 
