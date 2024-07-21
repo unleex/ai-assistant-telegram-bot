@@ -15,6 +15,5 @@ def prompt(chat: list[dict[str, str | MessagesRole]],
     )
     #for serialization in context
     res = giga.chat(chat)
-    print(chat,res)
     return dict(role=MessagesRole.ASSISTANT,
                 content=res.choices[0].message.content)

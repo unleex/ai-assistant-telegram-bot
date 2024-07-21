@@ -1,6 +1,5 @@
 import sys
-
-from log_filters import DebugWarningLogFilter, CriticalLogFilter, ErrorLogFilter
+from logging_settings.log_filters import DebugWarningLogFilter, CriticalLogFilter, ErrorLogFilter
 
 
 logging_config = {
@@ -49,7 +48,7 @@ logging_config = {
         },
         'error_file': {
             'class': 'logging.FileHandler',
-            'filename': 'error.log',
+            'filename': 'logs/error.log',
             'mode': 'w',
             'level': 'DEBUG',
             'formatter': 'formatter_1',
@@ -57,16 +56,16 @@ logging_config = {
         },
         'critical_file': {
             'class': 'logging.FileHandler',
-            'filename': 'critical.log',
+            'filename': 'logs/critical.log',
             'mode': 'w',
             'formatter': 'formatter_3',
             'filters': ['critical_filter']
         }
     },
     'loggers': {
-        'module_1': {
-            'level': 'DEBUG',
-            'handlers': ['error_file']
+        '__main__': {
+            'level': 'INFO',
+            'handlers': ['default']
 
         },
         'module_2': {
@@ -77,6 +76,7 @@ logging_config = {
         }
     },
     'root': {
+        'level': 'INFO',
         'formatter': 'default',
         'handlers': ['default']
     }

@@ -23,6 +23,8 @@ async def set_main_menu() -> None:
 async def set_brainstorm_menu():
     brainstorm_commands = [
         BotCommand(command="stop",
-                   description=lexicon["stop_command_description"])
+                   description=lexicon["stop_command_description"]),
+        BotCommand(command="pause",
+                   description=lexicon["pause_command_description"]),
     ]
     await bot.set_my_commands(brainstorm_commands)
