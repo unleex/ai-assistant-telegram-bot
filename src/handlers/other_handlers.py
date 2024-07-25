@@ -15,7 +15,7 @@ async def start(msg: Message):
     await msg.answer(lexicon["start_command"])
 
 
-@rt.message(Command("help"), StateFilter(default_state))
+@rt.message(Command("help"))
 async def start(msg: Message):
     await msg.answer(lexicon["help_command"])
 

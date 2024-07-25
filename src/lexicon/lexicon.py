@@ -32,7 +32,9 @@ LEXICON_RU = {
     # / help
     "help_command":
     """
-    здесь будет хэлп
+    /prompt - отправьте запрос к GPT
+/brainstorm - мозговой штурм с GPT
+/cancel - отмена операций
     """,
     # / cancel
     "cancel_command":
