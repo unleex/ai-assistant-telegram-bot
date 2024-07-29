@@ -1,4 +1,5 @@
-from aiogram.types import BotCommand
+from aiogram.types import BotCommand, BotCommandScopeDefault, BotCommandScopeChat
+
 from config.config import bot
 from lexicon.lexicon import LEXICON_RU
 
@@ -6,7 +7,7 @@ from lexicon.lexicon import LEXICON_RU
 lexicon = LEXICON_RU
 
 
-async def set_main_menu() -> None:
+async def set_main_menu(chat_id: int | None = None) -> None:
     main_menu_commands = [
         BotCommand(command="start",
                    description=lexicon["start_command_description"]),
@@ -17,10 +18,10 @@ async def set_main_menu() -> None:
         BotCommand(command="brainstorm",
                    description=lexicon["brainstorm_command_description"]),
     ]
-    await bot.set_my_commands(main_menu_commands)
+    await bot.set_my_commands(main_menu_commands, BotCommandScopeChat(chat_id=chat_id) if chat_id else BotCommandScopeDefault())
 
 
-async def set_brainstorm_menu():
+async def set_brainstorm_menu(chat_id: int | None = None):
     brainstorm_commands = [
         BotCommand(command="stop",
                    description=lexicon["stop_command_description"]),
@@ -29,4 +30,4 @@ async def set_brainstorm_menu():
         BotCommand(command="cancel",
                    description=lexicon["help_command_description"])
     ]
-    await bot.set_my_commands(brainstorm_commands)
+    await bot.set_my_commands(brainstorm_commands, BotCommandScopeChat(chat_id=chat_id) if chat_id else BotCommandScopeDefault())

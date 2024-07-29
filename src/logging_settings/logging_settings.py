@@ -71,7 +71,7 @@ logging_config = {
         'module_2': {
             'handlers': ['stdout']
         },
-        'module_3': {
+        'middlewares.middlewares': {
             'handlers': ['stderr', 'critical_file']
         }
     },

@@ -1,0 +1,28 @@
+{
+	"-1002187022735": {
+		"brainstorm_payload": [],
+		"users_cv": [],
+		"brainstorm_paused": false,
+		"user_ids": [
+			1232911583,
+			1547173190
+		]
+	},
+	"1547173190": {
+		"brainstorm_payload": [],
+		"users_cv": [],
+		"brainstorm_paused": false,
+		"user_ids": [
+			1547173190
+		]
+	},
+	"-4278394183": {
+		"brainstorm_payload": [],
+		"users_cv": [],
+		"brainstorm_paused": false,
+		"user_ids": [
+			1232911583,
+			1547173190
+		]
+	}
+}

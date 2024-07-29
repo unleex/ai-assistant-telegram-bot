@@ -24,6 +24,9 @@ LEXICON_RU = {
     """
     Приостановить/вернуть бота к участию в штурме.
     """,
+    "cancel_command_description":
+    """
+    отмена операций""",
     # /start
     "start_command":
     """
