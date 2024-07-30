@@ -1,12 +1,28 @@
 {
 	"-1002187022735": {
 		"brainstorm_payload": [],
-		"user_cvs": {
-			"1547173190": "\u042f \u0443\u043c\u0435\u044e \u043d\u0430\u0440\u0435\u0437\u0430\u0442\u044c \u043e\u0432\u043e\u0449\u0438"
-		},
+		"users_cv": [],
 		"brainstorm_paused": false,
-		"users": {
-			"1547173190": "unleex"
-		}
+		"user_ids": [
+			1232911583,
+			1547173190
+		]
+	},
+	"1547173190": {
+		"brainstorm_payload": [],
+		"users_cv": [],
+		"brainstorm_paused": false,
+		"user_ids": [
+			1547173190
+		]
+	},
+	"-4278394183": {
+		"brainstorm_payload": [],
+		"users_cv": [],
+		"brainstorm_paused": false,
+		"user_ids": [
+			1232911583,
+			1547173190
+		]
 	}
 }
