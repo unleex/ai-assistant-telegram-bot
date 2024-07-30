@@ -17,15 +17,20 @@ class DataBaseAccessor(BaseMiddleware):
         if str(chat.id) in db.keys():
             data['chat_data'] =  db[str(chat.id)]
         else:
-            db[str(chat.id)] = {"brainstorm_payload": [], "users_cv": [], "brainstorm_paused": False, "user_ids": []}
-            logger.info(f"New chat: {chat.id}.\nInfo: {chat.active_usernames}\n{chat.bio}")
+            db[str(chat.id)] = {"brainstorm_payload": [], "user_cvs": {}, "brainstorm_paused": False, "users": {}}
+            logger.info(f"New chat: {str(chat.id)}.\nInfo: {chat.active_usernames}\n{chat.bio}")
 
-        if user.id not in db[str(chat.id)]["user_ids"]:
-            db[str(chat.id)]["user_ids"].append(user.id)
-            logger.info(f"New user in chat: {chat.id}.\Id: {user.id}")
+        if str(user.id) not in db[str(chat.id)]["users"]:
+            db[str(chat.id)]["users"][str(user.id)] = user.username
+            logger.info(f"New user in chat: {str(chat.id)}. Id: {user.id}")
 
-        result = await handler(event, data)
-
+        with open('src/db/chat_database.json', mode='w') as fp:
+            json.dump(db, fp, indent='\t')
+        
+        try:
+            result = await handler(event, data)
+        except Exception as e:
+            print(e)
         with open('src/db/chat_database.json', mode='w') as fp:
             json.dump(db, fp, indent='\t')
         return result
