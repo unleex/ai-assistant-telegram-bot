@@ -16,7 +16,7 @@ lexicon = LEXICON_RU
 prompts = PROMPTS_RU
 
 
-@rt.message(Command('stop'), StateFilter(FSMStates.brainstorming))
+@rt.message(Command('conclude'), StateFilter(FSMStates.brainstorming))
 async def conclude_brainstorm(msg: Message, chat_data: dict):
     chat_data["brainstorm_payload"].pop(0) # remove system message
     brainstorm_messages: str = "".join([f"\n{message['role']}: {message['content']}" for message in chat_data["brainstorm_payload"]])
@@ -25,6 +25,7 @@ async def conclude_brainstorm(msg: Message, chat_data: dict):
     res = prompt(prompt_)
     await FSMStates.clear_chat_state(msg.chat.id)
     chat_data["brainstorm_payload"].clear()
+    chat_data["brainstorm_bot_paused"] = False
     await msg.answer(res["content"])
     await set_main_menu(msg.chat.id)
     
