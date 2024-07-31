@@ -27,10 +27,8 @@ class DataBaseAccessor(BaseMiddleware):
         with open('src/db/chat_database.json', mode='w') as fp:
             json.dump(db, fp, indent='\t')
         
-        try:
-            result = await handler(event, data)
-        except Exception as e:
-            print(e)
+        result = await handler(event, data)
+
         with open('src/db/chat_database.json', mode='w') as fp:
             json.dump(db, fp, indent='\t')
         return result

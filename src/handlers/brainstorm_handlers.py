@@ -3,6 +3,8 @@ from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.fsm.state import default_state
 from aiogram.types import Message
+
+from config.config import BOT_USERNAME
 from gpt.gpt import prompt
 from gpt.prompts import PROMPTS_RU
 from keyboards.set_menu import set_brainstorm_menu, set_main_menu
@@ -53,7 +55,7 @@ async def brainstorm_handler(msg: Message, chat_data: dict):
 @rt.message(Command('brainstorm'), StateFilter(default_state))
 async def brainstorm_init_handler(msg: Message, state: FSMContext, chat_data: dict):
     await set_brainstorm_menu(msg.chat.id)
-    topic = msg.text.replace("/brainstorm", '').replace("@evpatiy_ai_bot",'')
+    topic = msg.text.replace("/brainstorm", '').replace(BOT_USERNAME,'')
     if not topic.replace(' ',''):
         await msg.answer(lexicon["brainstorm_topic_empty"])
         await state.set_state(FSMStates.brainstorming_adding_topic)

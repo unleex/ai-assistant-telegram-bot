@@ -5,7 +5,7 @@ from aiogram.fsm.state import default_state
 from aiogram.types import Message, CallbackQuery
 from gigachat.models import MessagesRole
 
-from config.config import bot
+from config.config import bot, BOT_USERNAME
 from gpt.gpt import prompt
 from gpt.prompts import PROMPTS_RU
 from keyboards.keyboards import build_delegate_selecting_user_kb
@@ -20,7 +20,7 @@ prompts = PROMPTS_RU
 
 @rt.message(Command("delegate"), StateFilter(default_state))
 async def delegate_init_handler(msg: Message, state: FSMContext, chat_data: dict):
-    task = msg.text.replace("/delegate", '').replace("@evpatiy_ai_bot",'')
+    task = msg.text.replace("/delegate", '').replace(BOT_USERNAME,'')
     if not task.replace(' ',''):
         await msg.answer(lexicon["delegate_task_empty"])
         await state.set_state(FSMStates.delegate_adding_task)
@@ -46,7 +46,6 @@ async def delegate_finished_adding_user_cvs(msg: Message, state: FSMContext):
     await FSMStates.clear_chat_state(msg.chat.id)
     await FSMStates.clear_chat_data(msg.chat.id)
     await FSMStates.clear_chat_state(FSMStates.delegate_selecting_participants)
-
 
 @rt.message(StateFilter(FSMStates.delegate_adding_user_cvs))
 async def delegate_adding_user_cv(msg: Message, chat_data: dict, state: FSMContext):

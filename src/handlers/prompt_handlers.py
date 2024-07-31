@@ -3,6 +3,7 @@ from aiogram.filters import Command, StateFilter
 from aiogram.fsm.context import FSMContext
 from aiogram.types import Message
 
+from config.config import BOT_USERNAME
 from gpt.gpt import prompt
 from gpt.prompts import PROMPTS_RU
 from lexicon.lexicon import LEXICON_RU
@@ -17,7 +18,7 @@ prompts = PROMPTS_RU
 
 @rt.message(Command('prompt'))
 async def prompt_handler(msg: Message, state: FSMContext):
-    payload = msg.text.replace("/prompt", '').replace("@evpatiy_ai_bot",'')
+    payload = msg.text.replace("/prompt", '').replace(BOT_USERNAME,'')
     if not payload.replace(' ',''):
         await msg.answer(lexicon["prompt_payload_empty"])
         await state.set_state(FSMStates.prompt_payload_empty)
