@@ -1,3 +1,4 @@
 aiogram==3.10.0
 environs==11.0.0
 gigachat==0.1.31
+redis==5.0.7
