@@ -6,12 +6,13 @@ import json
 import logging
 logger = logging.getLogger(__name__)
 class DataBaseAccessor(BaseMiddleware):
-    async def __call__(self, 
-                       handler: Callable, 
-                       event: TelegramObject, 
+    async def __call__(self,
+                       handler: Callable,
+                       event: TelegramObject,
                        data: dict[str,Any]) -> Any:
-        chat: Chat|None = data['event_chat'] 
+        chat: Chat|None = data['event_chat']
         user: User|None = data["event_from_user"]
+
         with open("src/db/chat_database.json", mode='r') as fp:
             db: dict = json.load(fp)
         if str(chat.id) in db.keys():
@@ -26,8 +27,11 @@ class DataBaseAccessor(BaseMiddleware):
 
         with open('src/db/chat_database.json', mode='w') as fp:
             json.dump(db, fp, indent='\t')
-        
-        result = await handler(event, data)
+
+        try:
+            result = await handler(event, data)
+        except Exception as e:
+            print(e)
 
         with open('src/db/chat_database.json', mode='w') as fp:
             json.dump(db, fp, indent='\t')
