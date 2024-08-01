@@ -2,7 +2,7 @@ import asyncio
 import logging.config
 
 from config.config import dp, bot, BOT_DESCRIPTION
-from handlers import brainstorm_handlers, other_handlers, prompt_handlers, delegate_handlers
+from handlers import brainstorm_handlers, other_handlers, prompt_handlers, delegate_handlers, talkhandler
 from logging_settings.logging_settings import logging_config
 from middlewares.middlewares import DataBaseAccessor
 
@@ -15,6 +15,7 @@ async def main() -> None:
     dp.include_router(brainstorm_handlers.rt)
     dp.include_router(prompt_handlers.rt)
     dp.include_router(delegate_handlers.rt)
+    dp.include_router(talkhandler.rt)
     dp.update.middleware(DataBaseAccessor())
     logger.info("starting")
     await bot.set_my_description(BOT_DESCRIPTION)
