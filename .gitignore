@@ -4,4 +4,3 @@ test.py
 .env
 src/config/config.py
 /venv
-src/db/chat_database.json
