@@ -16,9 +16,8 @@ prompts = PROMPTS_RU
 async def talking(message: Message, state: FSMContext):
     ctx = await state.get_data()
     if 'dialog' not in ctx:
-        ctx['dialog'] = [{"role": MessagesRole.USER, "content": prompts["prompt"] % message.text}]
-    else:
-        ctx['dialog'].append(dict(role=MessagesRole.USER, content=message.text))
+        ctx['dialog'] = [{"role": MessagesRole.SYSTEM, "content": prompts["prompt"]}]
+    ctx['dialog'].append(dict(role=MessagesRole.USER, content=message.text))
     answer = prompt(ctx['dialog'])
     ctx['dialog'].append(dict(role=MessagesRole.ASSISTANT, content=answer['content']))
     await message.answer(answer["content"])

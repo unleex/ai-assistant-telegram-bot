@@ -20,6 +20,7 @@ class DataBaseAccessor(BaseMiddleware):
         else:
             db[str(chat.id)] = {"brainstorm_payload": [], "user_cvs": {}, "brainstorm_paused": False, "users": {}}
             logger.info(f"New chat: {str(chat.id)}.\nInfo: {chat.active_usernames}\n{chat.bio}")
+            data['chat_data'] =  db[str(chat.id)]
 
         if str(user.id) not in db[str(chat.id)]["users"]:
             db[str(chat.id)]["users"][str(user.id)] = user.username

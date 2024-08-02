@@ -4,3 +4,4 @@ test.py
 .env
 /venv
 .DS_store
+**.rdb
