@@ -1,5 +1,7 @@
 # ai-assistant-telegram-bot
-made within ai arrow 2024 by @unleex and @korjafar
+made within ai arrow 2024  by:
+    Maxim: @unleex (tg), https://github.com/unleex (github)
+    Jafar: @korjafar (tg), https://github.com/Jafarkor (github)
 
 # Предназначение
 Этот бот поможет команде разработчиков, участникам хакатонов и соревнований или даже в быту.
